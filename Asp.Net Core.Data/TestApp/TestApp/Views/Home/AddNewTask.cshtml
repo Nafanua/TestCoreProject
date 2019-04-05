@@ -1,0 +1,52 @@
+﻿@using TestApp.Models.Enums
+@model AddNewTaskViewModel
+@{
+    ViewData["Title"] = "AddNewTask";
+}
+
+<div class="jumbotron add-task">
+    <h2 class="text-center">Add New Task</h2>
+    <hr />
+    @using (Html.BeginForm("AddNewTask", "Home", FormMethod.Post))
+    {
+        @Html.HiddenFor(i => i.Regions)
+        @Html.HiddenFor(i => i.SearchEngines)
+        <div>
+            @Html.LabelFor(i => i.SearchEngineId, new {@class = "new-task-label" })
+            @Html.DropDownListFor(i => i.SearchEngineId, Model.SearchEngines, new { @class = "form-control new-task-input", id = "search-engine" })
+            @Html.ValidationMessageFor(i => i.SearchEngineId)
+        </div>
+        <div>
+            @Html.LabelFor(i => i.LocationId, new { @class = "new-task-label" })
+            @Html.DropDownListFor(i => i.LocationId, Model.Regions, new { @class = "form-control new-task-input", id = "region" })
+            @Html.ValidationMessageFor(i => i.LocationId)
+        </div>
+        <div>
+            @Html.LabelFor(i => i.Priority, new { @class = "new-task-label" })
+            @Html.DropDownListFor(i => i.Priority, Html.GetEnumSelectList<PriorityEnum>(), new { @class = "form-control new-task-input", id = "search-engine" })
+            @Html.ValidationMessageFor(i => i.Priority)
+        </div>
+        <div>
+            @Html.LabelFor(i => i.SiteDomain, new { @class = "new-task-label" })
+            @Html.TextBoxFor(i => i.SiteDomain, new { @class = "form-control new-task-input", id = "search-engine" })
+            @Html.ValidationMessageFor(i => i.SiteDomain)
+        </div>
+        <div>
+            @Html.LabelFor(i => i.SiteUrl, new { @class = "new-task-label" })
+            @Html.TextBoxFor(i => i.SiteUrl, new { @class = "form-control new-task-input", id = "search-engine" })
+            @Html.ValidationMessageFor(i => i.SiteUrl)
+        </div>
+        <div id="search-keywords">
+            @Html.LabelFor(i => i.Keywords, new { @class = "new-task-label" })
+            @Html.TextAreaFor(i => i.Keywords, new { @class = "form-control" })
+            @Html.ValidationMessageFor(i => i.Keywords)
+        </div>
+
+        <input type="submit" class="btn btn-success btn-sm" value="Save" />
+        <input type="button" class="btn btn-success btn-sm" onclick="history.back();" value="Cancel" />
+    }
+</div>
+
+
+
+

@@ -1,0 +1,43 @@
+﻿@model IEnumerable<TaskViewModel>
+@{
+    ViewData["Title"] = "Home Page";
+    var i = 1;
+}
+<div class="jumbotron">
+    <h2 class="text-center">Tasks</h2>
+    <hr/>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th class="text-center" style="width: 3%">#</th>
+                <th class="text-center">Keyword</th>
+                <th class="text-center">Search Engine</th>
+                <th class="text-center">Website</th>
+                <th class="text-center">Position</th>
+                <th class="text-center">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var task in Model)
+            {
+                <tr>
+                    <td class="text-center">@i</td>
+                    <td class="text-center">@task.Keyword</td>
+                    <td class="text-center">@task.SearchEngineName</td>
+                    <td class="text-center">@task.SiteDomain</td>
+                    <td class="text-center">@task.Position</td>
+                    <td class="text-center">@task.Status</td>
+                </tr>
+               
+                {
+                    i++;
+                }
+            }
+        </tbody>
+    </table>
+
+    <div>
+        <a class="btn btn-sm btn-success" href="@Url.Action("AddNewTask")">Add site to Engine</a>
+
+    </div>
+</div>
